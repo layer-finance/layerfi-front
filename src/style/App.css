@@ -1,0 +1,106 @@
+
+.Overview{
+  position: absolute;
+  left: -0.73%;
+  right: 0.73%;
+  top: 0%;
+  bottom: 0%;
+  background: rgba(0, 0, 0, 0.75);
+}
+.Overview #main{
+  position: absolute;
+  top : 120px;
+  left: 400px;
+  height: 75.52%;
+  width: 59.15%;
+}
+
+.Overview #main h2{
+  position: absolute;
+  top:8px;
+  left: 23px;
+  margin: 0px;
+  font-family: ABeeZee;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 23.9942px;
+  line-height: 44px;
+  /* or 183% */
+  letter-spacing: 0.5px;
+  color: #FFFFFF;
+}
+
+
+.Overview #main #total-value{
+  position: absolute;
+  width: 47.03%;
+  height: 39.310%;
+  left: 0px;
+  top: 0px;
+  background: #282828;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+  text-align: center;
+}
+
+.Overview #main #total-value #money{
+  position: relative;
+  width: 17.187%;
+  height: 24.18%;
+  top : 29.8245%;
+}
+.Overview #main #total-value #dollar-totalvalue{
+  position: absolute;
+  width: 100%;
+  height: 53px;
+  text-align: center;
+  bottom: 15%;
+}
+.Overview #main #total-value #dollar-totalvalue #dollar{
+  position: relative;
+  height: 25px;
+}
+.Overview #main #total-value #dollar-totalvalue p{
+  position: relative;
+  margin: auto;
+  width: auto;
+  font-family: ABeeZee;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 57px;
+  line-height: 52px;
+  /* identical to box height, or 92% */
+  text-align: center;
+  letter-spacing: 0.5px;
+
+  color: #FFFFFF;
+}
+
+.Overview #main #token-information{
+  position: absolute;
+  left: 0%;
+  top : 42.413%;
+  height: 56.90%;
+  width: 47.03%;
+  background: #282828;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+}
+.Overview #main #card-issue-amount{
+  position: absolute;
+  width: 46.906%;
+  height: 100%;
+  left: 51.1138%;
+  top: 0px;
+
+  background: #282828;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
+  border-radius: 18px;
+}
+.Overview #main #token-information #pie-chart-area{
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 90%;
+  height: 82%;
+}
