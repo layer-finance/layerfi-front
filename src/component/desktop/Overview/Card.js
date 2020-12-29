@@ -22,6 +22,11 @@ const CardArea = styled.div`
   flex-direction: column;
   background-image: url(${props => props.img || "/assets/card.png"});
   background-repeat: no-repeat;
+
+  @media screen and (max-width: 940px) {
+    margin-left: -30px;
+    margin-top: 50px;
+  }
 `;
 const CardName = styled.div`
   padding-top: 33px;
