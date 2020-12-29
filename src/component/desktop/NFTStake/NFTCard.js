@@ -99,7 +99,7 @@ const CardSelectArea = styled.div`
 const SelectButtonArea = styled.div`
   height: 40%;
   margin-right: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;

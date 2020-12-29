@@ -17,7 +17,7 @@ export default Card;
 const CardArea = styled.div`
   width: 380px;
   height: 298px;
-  margin-top: 50px;
+  //   margin-top: 50px;
   display: flex;
   flex-direction: column;
   background-image: url(${props => props.img || "/assets/card.png"});
