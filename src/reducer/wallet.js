@@ -2,7 +2,7 @@ import * as walletActions from "../action/wallet";
 
 const initialStates = {
   wallet: {
-    account: "Connect",
+    account: "Connect Wallet",
     web3: undefined,
     provider: undefined
   }
