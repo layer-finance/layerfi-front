@@ -5,25 +5,26 @@ import Button from "../../desktop/Button";
 
 function NFTCard() {
   const [cardObj, setCardObj] = useState({
-    url: "/assets/NFTSelectCard.png",
-    name: "Bronze Membership Card",
-    date: "2/30",
-    money: "50,000 LF"
+    url: "/assets/cards/black.png"
+    // name: "Bronze Membership Card",
+    // date: "2/30",
+    // money: "50,000 LF"
   });
   const [selectObj, setSelectObj] = useState([
-    { color: "#000000", state: false },
-    { color: "#CEBE2D", state: false },
-    { color: "#CFCFCF", state: false },
-    { color: "#836600", state: true }
+    { color: "#000000", url: "/assets/cards/black.png", state: false },
+    { color: "#CEBE2D", url: "/assets/cards/gold.png", state: false },
+    { color: "#CFCFCF", url: "/assets/cards/silver.png", state: false },
+    { color: "#836600", url: "/assets/cards/bronze.png", state: true }
   ]);
   const border = `4px solid #FFFFFF;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);`;
   const clickEvent = e => {
     const obj = selectObj.map(ele => {
       if (ele.color === e.target.value) {
-        return { color: ele.color, state: true };
+        setCardObj({ ...cardObj, url: ele.url });
+        return { ...ele, state: true };
       } else {
-        return { color: ele.color, state: false };
+        return { ...ele, state: false };
       }
     });
     setSelectObj(obj);

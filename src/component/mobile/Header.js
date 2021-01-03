@@ -72,7 +72,7 @@ function Header({ str }) {
       <a></a>
       <a>{str}</a>
       <WalletBtn onClick={connectWallet}>
-        {wallet.account}
+        <a>{wallet.account}</a>
         <WalletImg src="/assets/wallet.png" />
       </WalletBtn>
     </HeaderArea>
@@ -105,7 +105,6 @@ const HeaderArea = styled.div`
 
 const WalletBtn = styled.button`
   display: flex;
-  align-items: center;
   width: 150px;
   height: 34px;
   border-radius: 17px;
@@ -120,9 +119,14 @@ const WalletBtn = styled.button`
   /* identical to box height */
   color: #ffffff;
   margin-right: 10px;
+  a {
+    margin: auto auto;
+  }
 `;
 const WalletImg = styled.img`
-  margin-left: 5px;
+  margin: auto auto;
+  margin-left: auto;
+  margin-right: 10px;
   width: 24px;
   height: 22px;
 `;

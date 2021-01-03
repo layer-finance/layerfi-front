@@ -78,16 +78,32 @@ function Header() {
       </WalletBtn>
 
       <SnsArea>
-        <Icon>
+        <Icon
+          onClick={() => {
+            window.open("https://twitter.com/Layer_Finance", "_blank");
+          }}
+        >
           <img src="/assets/twitter.png" alt="twitter" />
         </Icon>
-        <Icon>
+        <Icon
+          onClick={() => {
+            window.open("https://t.me/LayerFiofficial", "_blank");
+          }}
+        >
           <img src="/assets/telegram.png" alt="telegram" />
         </Icon>
-        <Icon>
+        <Icon
+          onClick={() => {
+            window.open("https://github.com/layer-finance", "_blank");
+          }}
+        >
           <img src="/assets/github.png" alt="github" />
         </Icon>
-        <Icon>
+        <Icon
+          onClick={() => {
+            window.open("https://medium.com/@LayerFi", "_blank");
+          }}
+        >
           <img src="/assets/medium.png" alt="medium" />
         </Icon>
       </SnsArea>

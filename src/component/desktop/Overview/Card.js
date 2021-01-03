@@ -6,7 +6,7 @@ function Card({ obj }) {
       <CardDate>{obj.date}</CardDate>
       <CardMoneyLogo>
         <p>{obj.money}</p>
-        <img src="assets/logo.png" />
+        {/* <img src="assets/logo.png" /> */}
       </CardMoneyLogo>
     </CardArea>
   );
@@ -20,8 +20,9 @@ const CardArea = styled.div`
   //   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  background-image: url(${props => props.img || "/assets/card.png"});
+  background-image: url(${props => props.img || "/assets/cards/black.png"});
   background-repeat: no-repeat;
+  background-size: 100% 100%;
 
   @media screen and (max-width: 940px) {
     margin-left: -30px;
