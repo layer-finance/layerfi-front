@@ -12,12 +12,12 @@ import { useState } from "react";
 function Sandbox({ history }) {
   const [project, setProject] = useState({
     tokenInfo: {
-      TokenSaleSchedule: "In December",
-      Softcap: "2,000,000 LF",
-      Hardcap: "3,000,000 LF",
+      TokenSaleSchedule: "In Jenuary",
+      Softcap: "1,000,000 LF",
+      Hardcap: "2,000,000 LF",
       Individualcap: "100,000 LF"
     },
-    saleCap: "1,500 ETH",
+    saleCap: "1,000 ETH",
     tokenRatio: { token: "1ETH", ratio: "2000" }
   });
   const [rasied, setRasied] = useState(0);
