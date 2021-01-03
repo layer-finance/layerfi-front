@@ -29,7 +29,7 @@ const providerConfig =
 function Header() {
   const dispatch = useDispatch();
   const [localWallet, setLocalWallet] = useState({
-    account: "Connect Wallet",
+    account: undefined,
     provider: new Web3.providers.HttpProvider(providerConfig),
     web3: new Web3(new Web3.providers.HttpProvider(providerConfig))
   });
@@ -58,10 +58,10 @@ function Header() {
       });
       dispatch(
         actions.connectWallet({
-          web3: localWallet.web3,
-          account: localWallet.account,
+          web3: web3,
+          account: account,
           address: address,
-          provider: localWallet.provider
+          provider: provider
         })
       );
     },
@@ -73,7 +73,7 @@ function Header() {
       {/* <WalletBtn onClick={connectWallet}>
       {Wallet.text} */}
       <WalletBtn onClick={connectWallet}>
-        {localWallet.account}
+        {wallet.account}
         <WalletImg src="/assets/wallet.png" />
       </WalletBtn>
 

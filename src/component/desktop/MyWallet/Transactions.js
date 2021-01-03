@@ -1,12 +1,47 @@
 import styled from "styled-components";
 import Button from "../Button";
 
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import axios from "axios";
+import { List } from "@material-ui/core";
+
 function Transactions() {
-  return (
-    <TransactionArea>
-      <Header>
-        <p>Transactions</p>
-      </Header>
+  const { wallet } = useSelector(state => state.wallet);
+  const { web3, provider, address } = wallet;
+
+  const [txList, setTxList] = useState([]);
+
+  const getTxList = async () => {
+    if (!address) return [];
+    const ret = await axios.get(
+      "https://api.etherscan.io/api?module=account&action=tokentx&address=" +
+        address +
+        "&startblock=0&endblock=99999999&page=1&offset=10&sort=desc&apikey=XAHHUFHKKK6RHEXEPEY8I45NCYYPPEBA6Z"
+    );
+    setTxList(ret.data.result);
+  };
+
+  useEffect(() => {
+    getTxList(address);
+  }, [address]);
+  const longEnUSFormatter = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
+  function TransactionElement({ tx }) {
+    const TransactionInfo = tx => {
+      if (!web3 || !tx) return 0;
+      const rawValue = parseFloat(web3.utils.fromWei(tx.value, "ether"));
+      const value =
+        rawValue > 1000000 ? parseInt(rawValue) : rawValue.toPrecision(6);
+      const symbol = tx.tokenSymbol;
+      const info = address.toLowerCase() == tx.to ? "RECEIVED" : "SENT";
+      return `${value} ${symbol} ${info}`;
+    };
+    return (
       <TransactionEle>
         <LeftLine>
           <ImgCircle>
@@ -16,10 +51,18 @@ function Transactions() {
         </LeftLine>
         <Content>
           <ContentText>
-            <h2>thu, dec 12</h2>
-            <p>100,000LF Sale</p>
+            <h2>
+              {tx ? longEnUSFormatter.format(new Date(tx.timeStamp * 1000)) : 0}
+            </h2>
+            <p>{TransactionInfo(tx)}</p>
           </ContentText>
-          <ButtonArea>
+          <ButtonArea
+            onClick={() =>
+              tx
+                ? window.open("https://etherscan.io/tx/" + tx.hash, "_black")
+                : {}
+            }
+          >
             <ButtonStyle>
               MORE
               <img src="/assets/MoreButtonIcon.png" />
@@ -28,12 +71,24 @@ function Transactions() {
           <HorizontalLine />
         </Content>
       </TransactionEle>
+    );
+  }
+
+  return (
+    <TransactionArea>
+      <Header>
+        <p>Transactions</p>
+      </Header>
+      <TransactionList>
+        {txList.map((tx, i) => {
+          return <TransactionElement tx={tx} key={i} />;
+        })}
+      </TransactionList>
     </TransactionArea>
   );
 }
 export default Transactions;
 const TransactionArea = styled.div`
-  display: flex;
   width: 380px;
   height: 550px;
   flex-direction: column;
@@ -42,12 +97,20 @@ const TransactionArea = styled.div`
   box-shadow: 0px 40px 80px rgba(0, 0, 0, 0.25);
   border-radius: 18px;
 `;
+const TransactionList = styled.div`
+  margin-top: 60px;
+  width: 100%;
+  height: 490px;
+  overflow: auto;
+`;
 const Header = styled.div`
   height: 60px;
-  width: 100%;
+  width: 375px;
   display: flex;
   align-items: center;
+  position: fixed;
   border-radius: 18px 18px 0px 0px;
+  background-color: #282828;
   p {
     margin: 0px;
     margin-left: 20px;
@@ -60,11 +123,11 @@ const Header = styled.div`
     color: #ffffff;
   }
 `;
-const TransactionEle = styled.div`
+const TransactionEle = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 80%;
+  width: 100%;
   height: 170px;
   overflow-y: auto;
 `;
