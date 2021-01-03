@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import * as actions from "../../action/wallet";
+
 import Web3 from "web3";
-import Web3Modal from "web3modal";
+import Web3Modal, { local } from "web3modal";
 
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
@@ -9,7 +12,7 @@ const providerOptions = {
   walletconnect: {
     package: WalletConnectProvider,
     options: {
-      infuraId: "7a615246e88c4081a263552f80cf3060"
+      infuraId: "f5d74ff5fe8046cebb9aa1f913017e2b"
     }
   }
 };
@@ -21,32 +24,56 @@ const web3Modal = new Web3Modal({
 });
 
 const providerConfig =
-  "https://mainnet.infura.io/v3/7a615246e88c4081a263552f80cf3060";
+  "https://mainnet.infura.io/v3/f5d74ff5fe8046cebb9aa1f913017e2b";
 
 function Header() {
-  const [Wallet, setWallet] = useState({
-    text: "Connect Wallet",
+  const dispatch = useDispatch();
+  const [localWallet, setLocalWallet] = useState({
+    account: "Connect Wallet",
     provider: new Web3.providers.HttpProvider(providerConfig),
     web3: new Web3(new Web3.providers.HttpProvider(providerConfig))
   });
+
+  const { wallet } = useSelector(state => state.wallet);
 
   const connectWallet = async () => {
     const provider = await web3Modal.connect();
     const web3 = await new Web3(provider);
     const accounts = await web3.eth.getAccounts();
-    const account = accounts[0];
-    setWallet({
-      web3: web3,
-      text:
-        account.substr(0, 6) +
-        "..." +
-        account.substr(account.length - 6, account.length)
-    });
+    const address = accounts[0];
+    const account =
+      address.substr(0, 6) +
+      "..." +
+      address.substr(address.length - 6, address.length);
+    dispatchWallet({ web3, provider, account, address });
   };
+
+  const dispatchWallet = useCallback(
+    ({ account, web3, provider, address }) => {
+      setLocalWallet({
+        provider: provider,
+        web3: web3,
+        address: address,
+        account: account
+      });
+      dispatch(
+        actions.connectWallet({
+          web3: localWallet.web3,
+          account: localWallet.account,
+          address: address,
+          provider: localWallet.provider
+        })
+      );
+    },
+    [localWallet, dispatch]
+  );
+
   return (
     <HeaderArea>
+      {/* <WalletBtn onClick={connectWallet}>
+      {Wallet.text} */}
       <WalletBtn onClick={connectWallet}>
-        {Wallet.text}
+        {localWallet.account}
         <WalletImg src="/assets/wallet.png" />
       </WalletBtn>
 

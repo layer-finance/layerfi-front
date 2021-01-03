@@ -1,5 +1,36 @@
 import styled from "styled-components";
+
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+
+import { LF_ADDRESS, ERC20_ABI } from "../../../lib/contracts";
+
 function Balance() {
+  const { wallet } = useSelector(state => state.wallet);
+  const { web3, provider, address } = wallet;
+
+  const LF_CONTRACT = web3
+    ? new web3.eth.Contract(ERC20_ABI, LF_ADDRESS)
+    : undefined;
+
+  const getAmount = async address => {
+    if (!LF_CONTRACT) return 0;
+    const lf = await LF_CONTRACT.methods.balanceOf(address).call();
+    const eth = await web3.eth.getBalance(address);
+    setBalance({
+      eth: parseFloat(web3.utils.fromWei(eth, "ether")),
+      lf: parseFloat(web3.utils.fromWei(lf, "ether"))
+    });
+  };
+
+  const [balance, setBalance] = useState({
+    eth: 0,
+    lf: 0
+  });
+
+  useEffect(() => {
+    getAmount(address);
+  }, [address]);
   return (
     <BalanceArea>
       <Header>
@@ -9,13 +40,23 @@ function Balance() {
         <img src="/assets/NFT Card.png" />
         <InfoBar>
           <InfoBarEle>
-            <h2>Balance</h2>
-            <p>$65,237</p>
+            <h2>ETH Balance</h2>
+            <p>
+              {balance.eth > 1000000
+                ? parseInt(balance.eth)
+                : balance.eth.toPrecision(6)}
+              ETH
+            </p>
           </InfoBarEle>
           <VerticalLine />
           <InfoBarEle>
             <h2>LF AMOUNT</h2>
-            <p>31,000 LF</p>
+            <p>
+              {balance.lf > 1000000
+                ? parseInt(balance.lf)
+                : balance.lf.toPrecision(6)}
+              LF
+            </p>
           </InfoBarEle>
         </InfoBar>
       </BalanceMain>

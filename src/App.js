@@ -1,5 +1,6 @@
 import "./style/App.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter, Route } from "react-router-dom";
 import Overview from "./pages/desktop/Overview";
 import MyWallet from "./pages/desktop/MyWallet";
@@ -14,6 +15,12 @@ import MyWalletMb from "./pages/mobile/MyWallet";
 import NFTStakeMb from "./pages/mobile/NFTStake";
 import SandboxMb from "./pages/mobile/Sandbox";
 import PoolMb from "./pages/mobile/Pool";
+
+import createStore from "./store";
+import reducers from "./reducer";
+
+const store = createStore(reducers);
+
 function App(props) {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -39,25 +46,29 @@ function App(props) {
   const Render = () => {
     if (!isMobile) {
       return (
-        <div className="App">
-          <Route path="/" exact component={Overview} />
-          <Route path="/Exchange" exact component={Overview} />
-          <Route path="/My Wallet" exact component={MyWallet} />
-          <Route path="/Sandbox" exact component={Sandbox} />
-          <Route path="/Pool" exact component={Pool} />
-          <Route path="/NFT Stake" exact component={NFTStake} />
-        </div>
+        <Provider store={store}>
+          <div className="App">
+            <Route path="/" exact component={Overview} />
+            <Route path="/Exchange" exact component={Overview} />
+            <Route path="/My Wallet" exact component={MyWallet} />
+            <Route path="/Sandbox" exact component={Sandbox} />
+            <Route path="/Pool" exact component={Pool} />
+            <Route path="/NFT Stake" exact component={NFTStake} />
+          </div>
+        </Provider>
       );
     } else {
       return (
-        <div className="App">
-          <Route path="/" exact component={OverviewMb} />
-          <Route path="/Exchange" exact component={Overview} />
-          <Route path="/My Wallet" exact component={MyWalletMb} />
-          <Route path="/Sandbox" exact component={SandboxMb} />
-          <Route path="/Pool" exact component={PoolMb} />
-          <Route path="/NFT Stake" exact component={NFTStakeMb} />
-        </div>
+        <Provider store={store}>
+          <div className="App">
+            <Route path="/" exact component={OverviewMb} />
+            <Route path="/Exchange" exact component={Overview} />
+            <Route path="/My Wallet" exact component={MyWalletMb} />
+            <Route path="/Sandbox" exact component={SandboxMb} />
+            <Route path="/Pool" exact component={PoolMb} />
+            <Route path="/NFT Stake" exact component={NFTStakeMb} />
+          </div>
+        </Provider>
       );
     }
   };
