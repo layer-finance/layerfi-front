@@ -138,8 +138,8 @@ const TokenInformation = styled.div`
     margin-bottom: 15px;
   }
   #chart {
-    width: 291px;
-    height: 237px;
+    width: 280px;
+    height: 280px;
   }
 `;
 const CardIssueAmount = styled.div`

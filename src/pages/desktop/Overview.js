@@ -138,15 +138,15 @@ const TokenInformation = styled.div`
   flex-direction: column;
 
   width: 380px;
-  height: 330px;
+  height: 380px;
   margin-top: 18px;
   border-radius: 18px;
   background: #282828;
   box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.25);
   #chart {
-    margin-top: -40px;
-    width: 334px;
-    height: 272px;
+    margin-top: 0px;
+    width: 280px;
+    height: 280px;
   }
 `;
 const CardIssueAmount = styled.div`

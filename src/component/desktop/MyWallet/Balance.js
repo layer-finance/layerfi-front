@@ -31,6 +31,7 @@ function Balance() {
   useEffect(() => {
     getAmount(address);
   }, [address]);
+
   return (
     <BalanceArea>
       <Header>
