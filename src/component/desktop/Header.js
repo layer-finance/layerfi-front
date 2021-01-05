@@ -73,7 +73,7 @@ function Header() {
       {/* <WalletBtn onClick={connectWallet}>
       {Wallet.text} */}
       <WalletBtn onClick={connectWallet}>
-        <a>{wallet.account}</a>
+        <a>{wallet.account ? wallet.account : "Connect Wallet"}</a>
         <WalletImg src="/assets/wallet.png" />
       </WalletBtn>
 
