@@ -6,7 +6,7 @@ import Card from "../../component/desktop/Overview/Card";
 import Chart from "../../component/desktop/Overview/Chart";
 
 function OverviewMb({ history }) {
-  const [totalValue, setTotalValue] = useState(21.836);
+  const [totalValue, setTotalValue] = useState(0);
   const [cardObj, setCardObj] = useState({
     url: "/assets/card.png",
     name: "Silver Membership Card",
