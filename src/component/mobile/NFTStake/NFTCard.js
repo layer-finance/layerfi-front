@@ -97,8 +97,8 @@ const CardSelectArea = styled.div`
   align-items: center;
 `;
 const SelectButtonArea = styled.div`
-  height: 100%;
-  margin-right: 10px;
+  height: 120px;
+  margin-right: 20px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
@@ -106,18 +106,18 @@ const SelectButtonArea = styled.div`
   justify-content: space-around;
 `;
 const SelectButton = styled.button`
-  width: 14px !important;
-  height: 14px !important;
-  background: ${props => props.color || "black"};
+  height: 22px;
+  width: 22px;
   border-width: 0px;
   border-radius: 50%;
+  background: ${props => props.color || "black"};
 `;
 const Select = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: ${props => (props.state ? "#FFFFFF" : "none")};
 `;
