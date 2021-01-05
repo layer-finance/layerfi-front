@@ -126,7 +126,7 @@ const WalletBtn = styled.button`
 const WalletImg = styled.img`
   margin: auto auto;
   margin-left: auto;
-  margin-right: 10px;
+  margin-right: 5px;
   width: 24px;
   height: 22px;
 `;
