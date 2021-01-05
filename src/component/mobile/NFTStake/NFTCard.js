@@ -106,8 +106,8 @@ const SelectButtonArea = styled.div`
   justify-content: space-around;
 `;
 const SelectButton = styled.button`
-  width: 14px;
-  height: 14px;
+  width: 14px !important;
+  height: 14px !important;
   background: ${props => props.color || "black"};
   border-width: 0px;
   border-radius: 50%;
