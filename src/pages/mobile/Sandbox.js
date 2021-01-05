@@ -73,6 +73,7 @@ const Main = styled.div`
   width: 100%;
 `;
 const SandBoxArea = styled.div`
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
