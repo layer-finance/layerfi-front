@@ -124,8 +124,8 @@ const ConnectWallet = styled.div`
   height: 100%;
   width: 100%;
   img {
-    width: 480px;
-    height: 300px;
+    width: 240px;
+    height: 150px;
     margin: auto auto;
   }
 `;
