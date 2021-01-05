@@ -99,7 +99,8 @@ const HeaderArea = styled.div`
 
   a {
     width: 150px;
-    margin-right: 5px;
+    margin-right: auto;
+    margin-left: 5px;
   }
 `;
 
