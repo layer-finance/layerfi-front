@@ -64,6 +64,7 @@ const OverviewArea = styled.div`
   position: absolute;
   left: -0.73%;
   right: 0.73%;
+  min-height: 1000px;
   top: 0%;
   bottom: 0%;
   background: rgba(0, 0, 0, 0.75);
@@ -73,7 +74,7 @@ const Main = styled.div`
   display: flex;
   top: 120px;
   left: 400px;
-  height: 75%;
+  height: 800px;
   width: 792px;
   max-height: 800px;
 `;
