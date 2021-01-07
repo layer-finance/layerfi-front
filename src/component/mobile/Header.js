@@ -42,8 +42,8 @@ function Header({ str }) {
     const address = accounts[0];
     const account =
       address.substr(0, 6) +
-      "..." +
-      address.substr(address.length - 6, address.length);
+      ".." +
+      address.substr(address.length - 4, address.length);
     dispatchWallet({ web3, provider, account, address });
   };
 
@@ -106,7 +106,7 @@ const HeaderArea = styled.div`
 
 const WalletBtn = styled.button`
   display: flex;
-  width: 120px;
+  width: 150px;
   height: 34px;
   border-radius: 17px;
   border: 0px;
